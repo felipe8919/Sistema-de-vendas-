@@ -1,0 +1,54 @@
+﻿@model List<exemplo2.api.Models.Cliente>;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Logradouro</th>
+                <th>Cidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Nome</td>
+                        <td>@item.Cpf</td>
+                        <td>@item.Email.Descricao</td>
+                        <td>@item.Endereco.Logradouro</td>
+                        <td>@item.Endereco.Cidade</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div>
+        @using (Html.BeginForm("ConsultarTodos", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button class="btn btn-sm btn-primary">Carregar todos os clientes</button>
+        }
+    </div>
+    <br />
+    <br />
+    <br />
+    <div>
+        @using (Html.BeginForm("index", "Home", FormMethod.Post))
+        {
+            <input id="campoid" name="Consulta por Id" type="text"/>
+            @Html.ActionLink("Consultar","index");
+            <button class="btn btn-sm btn-primary">Consulta</button>
+        }
+    </div>
+</div>

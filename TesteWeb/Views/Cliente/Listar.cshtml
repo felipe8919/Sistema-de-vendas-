@@ -1,0 +1,58 @@
+﻿@model IEnumerable<exemplo2.api.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Listar";
+}
+
+<h1>Listar</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPessoa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cpf)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoPessoa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id=item.Id,nome=item.Nome,cpf=item.Cpf }) |
+                        @Html.ActionLink("Detalhar", "Detalhes", new { id=item.Id }) |
+                        @Html.ActionLink("Deletar", "Deletar", new { id=item.Id })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
